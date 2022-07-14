@@ -1,0 +1,73 @@
+﻿@using Ictshop.Models;
+@model List<GioHang>
+
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <h2 class=""> GIỎ HÀNG <i class="fa fa-shopping-cart"></i></h2>
+<br />
+<table class="table table-hover divGioHang">
+    <thead>
+        <tr style="">
+            <th scope="col"> Mã SP</th>
+            <th scope="col"> Tên SP</th>
+            <th scope="col"> Ảnh bìa</th>
+            <th scope="col"> Đơn giá</th>
+            <th scope="col"> Số lượng</th>
+            <th scope="col"> Thành tiền</th>
+        </tr>
+    </thead>
+
+
+        @foreach (var item in Model)
+        {
+            <tr class="font-italic">
+                <th scope="row">1</th>
+                <td> @item.iMasp</td>
+
+                <td> @item.sTensp</td>
+
+                <td> <img src="@Url.Content("~/HinhanhSP/" +item.sAnhBia)" width="50" height="50" /></td>
+
+                <td>  @String.Format("{0:0,0}", item.dDonGia) VNĐ</td>
+
+                <td> @item.iSoLuong</td>
+
+                <td>   @String.Format("{0:0,0}", item.ThanhTien) VNĐ</td>
+
+
+            </tr>
+
+        }
+
+        <tr>
+            <td colspan="6" style="text-align:right">
+
+                @Html.ActionLink("Chỉnh sửa giỏ hàng", "SuaGioHang")
+            </td>
+            <td colspan="6" style="text-align:right;color:blue">
+                @using (Html.BeginForm("DatHang", "GioHang", new { @class = "" }))
+                {
+                    <input type="submit" value="Đặt hàng" class="btn-danger" />
+                }
+            </td>
+        </tr>
+</table>
+
+@*Css giỏ hàng*@
+<style type="text/css">
+    .divGioHang {
+        border: 2px solid #EEEEEE;
+        font-size:large
+    }
+
+        .divGioHang td {
+            padding: 10px;
+            border: 2px solid #EEEEEE;
+            text-align:center
+        }
+        .divGioHang th{
+            text-align:center
+        }
+</style>
